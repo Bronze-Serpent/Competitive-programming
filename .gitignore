@@ -1,3 +1,7 @@
 /.idea/
 /leetcode/target/
-/olympiads/src/main/java/com/barabanov/tinkoff/tasks/
+/olympiads/src/main/java/com/barabanov/tinkoff/trainee/tasks/
+/olympiads/target/
+/input.txt
+/output.txt
+/olympiads/src/main/java/com/barabanov/yandex/trainee/tasks/

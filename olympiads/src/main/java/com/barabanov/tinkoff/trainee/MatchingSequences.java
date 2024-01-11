@@ -1,4 +1,4 @@
-package com.barabanov.tinkoff;
+package com.barabanov.tinkoff.trainee;
 
 import java.util.Arrays;
 import java.util.Scanner;
