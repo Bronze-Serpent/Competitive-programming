@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Diversity
 {
-    // TODO: 11.01.2024 это слишком медленный алгоритм. Нужно быстрее
+    // 11.01.2024 это слишком медленный алгоритм. Нужно быстрее
     public static void main(String[] args)
     {
         Scanner scanner = new Scanner(System.in);
