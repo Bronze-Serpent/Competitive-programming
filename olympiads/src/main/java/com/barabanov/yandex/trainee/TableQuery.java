@@ -105,4 +105,15 @@ public class TableQuery
             this.lessThan = lessThan;
         }
     }
+
+
+    private static Map<String, ColumnConstraint> createConstraintMap()
+    {
+        return null;
+    }
+
+    private static int calcSumOfMatchesCol()
+    {
+        return 0;
+    }
 }

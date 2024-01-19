@@ -11,22 +11,14 @@ public class NewHistory
 
     private static final int SECONDS_IN_A_DAY = 24 * 60 * 60;
 
+
     public static void main(String[] args) throws IOException
     {
         try (BufferedReader inputReader = new BufferedReader(new FileReader("input.txt"));
              FileWriter writer = new FileWriter("output.txt"))
         {
-            String startTimeData = inputReader.readLine();
-            int[] startTimeNums = Arrays.stream(startTimeData.split(" "))
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
-            LocalDateTime startTime = LocalDateTime.of(startTimeNums[0], startTimeNums[1], startTimeNums[2], startTimeNums[3], startTimeNums[4], startTimeNums[5]);
-
-            String endTimeData = inputReader.readLine();
-            int[] endTimeNums = Arrays.stream(endTimeData.split(" "))
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
-            LocalDateTime endTime = LocalDateTime.of(endTimeNums[0], endTimeNums[1], endTimeNums[2], endTimeNums[3], endTimeNums[4], endTimeNums[5]);
+            LocalDateTime startTime = timeFromString(inputReader.readLine());
+            LocalDateTime endTime = timeFromString(inputReader.readLine());
 
             long secWithLeap = calcDiffInSeconds(startTime, endTime);
             long secDueToLipYears = secDueToLipYears(startTime, endTime);
@@ -82,5 +74,15 @@ public class NewHistory
         }
 
         return sumSec;
+    }
+
+
+    private static LocalDateTime timeFromString(String line)
+    {
+        int[] timeNums = Arrays.stream(line.split(" "))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        return LocalDateTime.of(timeNums[0], timeNums[1], timeNums[2], timeNums[3], timeNums[4], timeNums[5]);
     }
 }

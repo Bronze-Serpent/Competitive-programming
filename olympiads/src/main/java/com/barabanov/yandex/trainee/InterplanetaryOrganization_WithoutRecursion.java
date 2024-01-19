@@ -69,6 +69,7 @@ public class InterplanetaryOrganization_WithoutRecursion
         }
     }
 
+
     // поиск в ширину
     // т.к. родитель у вершины только 1, мне массив visited не нужен
     public static String getLangBarrierForEmployee(EmployeeNode bossNode)
