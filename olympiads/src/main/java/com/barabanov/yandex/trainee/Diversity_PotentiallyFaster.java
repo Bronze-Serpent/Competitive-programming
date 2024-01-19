@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 // ¬ данном алгоритме хран€тс€ только различи€ в картах, сами карты игроков не хран€тс€
-public class DiversityPotentiallyFaster
+public class Diversity_PotentiallyFaster
 {
 
     private static final String FIRST_PLAYER_NAME = "A";

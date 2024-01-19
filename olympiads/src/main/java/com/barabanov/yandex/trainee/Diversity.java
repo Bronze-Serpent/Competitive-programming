@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class Diversity
 {
     // 11.01.2024 это слишком медленный алгоритм. Нужно быстрее
-    public static void main(String[] args)
+    public static void main(String[] arg)
     {
         Scanner scanner = new Scanner(System.in);
 
