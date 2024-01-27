@@ -26,7 +26,7 @@ public class NewHistory
             long timeOfTheLizards = secWithLeap - secDueToLipYears;
 
             writer.append(Long.toString(timeOfTheLizards / SECONDS_IN_A_DAY));
-            writer.append(" ");
+            writer.append(' ');
             writer.append(Long.toString(timeOfTheLizards % SECONDS_IN_A_DAY));
         }
     }
@@ -39,8 +39,6 @@ public class NewHistory
     }
 
 
-    // TODO: 10.01.2024 только с таким решением мне придЄтс€ пройти по всем годам в промежутке.
-    //  ¬озможно, этого можно избежать.
     public static long secDueToLipYears(LocalDateTime startDate, LocalDateTime endDate)
     {
         long sumSec = 0;
@@ -56,7 +54,7 @@ public class NewHistory
             }
         }
 
-        if (endYear % 400 == 0
+        if ((endYear % 400 == 0)
             || (endYear % 4 == 0 && endYear % 100 != 0))
         {
             if (endDate.getMonth().getValue() > 2)
