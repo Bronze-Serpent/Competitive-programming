@@ -1,3 +1,5 @@
+-- 1934
+
 -- решение без JOIN
 WITH confirms_stat
          AS
@@ -26,4 +28,13 @@ SELECT user_id,
            END AS confirmation_rate
 FROM confirms_user_stat;
 
+
+
 -- решение с JOIN
+SELECT s.user_id, ROUND(SUM(CASE
+                                WHEN action = 'confirmed' THEN 1
+                                ELSE 0
+                            END) / COUNT(*), 2) confirmation_rate
+FROM Signups s LEFT OUTER JOIN Confirmations c
+                               ON s.user_id = c.user_id
+GROUP BY user_id;
