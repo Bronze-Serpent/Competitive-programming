@@ -1,4 +1,4 @@
-package com.barabanov.leetcode;
+package com.barabanov.leetcode.top.interview150;
 
 import java.util.*;
 
