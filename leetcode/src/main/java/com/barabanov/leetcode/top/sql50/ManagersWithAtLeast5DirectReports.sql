@@ -1,4 +1,15 @@
 --570
+
+-- А в MySql можно в SELECT указывать и столбцы, которых нет в GROUP BY
+SELECT a2.name
+FROM Employee a1
+         INNER JOIN Employee a2
+                    ON a1.managerId = a2.id
+GROUP BY a1.managerId
+HAVING COUNT(*) > 4;
+
+
+-- Подойдёт для Postgres
 SELECT e2.name
 FROM Employee e1
     INNER JOIN Employee e2
