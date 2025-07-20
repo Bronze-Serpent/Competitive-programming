@@ -1,6 +1,6 @@
 -- 1934
 
--- ������� ��� JOIN
+-- ������� ��� JOIN
 WITH confirms_stat
          AS
          (SELECT user_id,
@@ -30,7 +30,7 @@ FROM confirms_user_stat;
 
 
 
--- ������� � JOIN
+-- ������� � JOIN
 SELECT s.user_id, ROUND(SUM(CASE
                                 WHEN action = 'confirmed' THEN 1
                                 ELSE 0
@@ -38,3 +38,15 @@ SELECT s.user_id, ROUND(SUM(CASE
 FROM Signups s LEFT OUTER JOIN Confirmations c
                                ON s.user_id = c.user_id
 GROUP BY user_id;
+
+
+-- Такое же решение, что и выше но с использованием AVG, а не SUM
+SELECT s.user_id user_id,
+       ROUND(AVG(CASE
+                     WHEN action = 'confirmed' THEN 1
+                     ELSE 0
+           END), 2) confirmation_rate
+FROM signups s
+         LEFT OUTER JOIN confirmations c
+                         ON s.user_id = c.user_id
+GROUP BY s.user_id;
