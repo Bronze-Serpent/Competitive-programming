@@ -6,7 +6,7 @@ package com.barabanov.leetcode;
 public class StringCompression {
 
     public static void main(String[] args) {
-        System.out.println(compress(new char[]{'a'}));
+        System.out.println(compress(new char[]{'a', 'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'c', 'c', 'c'}));
     }
 
     public static int compress(char[] chars) {
@@ -21,30 +21,34 @@ public class StringCompression {
             if (prevChar == currentChar)
                 elemQuantity += 1;
             else {
-                chars[compressedIdx++] = prevChar;
-                if (elemQuantity < 10) {
-                    chars[compressedIdx++] = (char) elemQuantity;
-                    elemQuantity = 0;
-                } else
-                    while (elemQuantity != 0) {
-                        chars[compressedIdx++] = (char) (elemQuantity % 10);
-                        elemQuantity = elemQuantity / 10;
-                    }
-
+                compressedIdx = writeCharAndQuantityIntoCharArr(prevChar, elemQuantity, chars, compressedIdx);
                 prevChar = currentChar;
+                elemQuantity = 1;
             }
         }
 
-        chars[compressedIdx++] = prevChar;
-        if (elemQuantity < 10) {
-            chars[compressedIdx++] = (char) elemQuantity;
-            elemQuantity = 0;
-        } else
-            while (elemQuantity != 0) {
-                chars[compressedIdx++] = (char) (elemQuantity % 10);
-                elemQuantity = elemQuantity / 10;
-            }
+        compressedIdx = writeCharAndQuantityIntoCharArr(prevChar, elemQuantity, chars, compressedIdx);
 
         return compressedIdx;
+    }
+
+
+    private static int writeCharAndQuantityIntoCharArr(char ch, int quantity, char[] chars, int arrIdx) {
+        chars[arrIdx++] = ch;
+        if (quantity < 10) {
+            if (quantity != 1)
+                chars[arrIdx++] = Character.forDigit(quantity, 10);
+        } else {
+            int idx = 0;
+            char[] quantityAsChars = new char[quantity];
+            while (quantity != 0) {
+                quantityAsChars[idx++] = Character.forDigit(quantity % 10, 10);
+                quantity = quantity / 10;
+            }
+            for (int i = idx -1; i >= 0; i--)
+                chars[arrIdx++] = quantityAsChars[i];
+        }
+
+        return arrIdx;
     }
 }
