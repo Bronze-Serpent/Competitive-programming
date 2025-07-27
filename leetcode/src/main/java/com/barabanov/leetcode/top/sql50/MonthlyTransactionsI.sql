@@ -15,3 +15,19 @@ SELECT CONCAT(EXTRACT(YEAR FROM trans_date), '-', LPAD(EXTRACT(MONTH FROM trans_
            END) approved_total_amount
 FROM Transactions
 GROUP BY country, month
+
+
+-- для postgres:
+SELECT to_char(t.trans_date, 'YYYY-MM') "month",
+       t.country country,
+       COUNT(*) trans_count,
+       SUM(t.amount) trans_total_amount,
+       COUNT(CASE
+                 WHEN t.state = 'approved' THEN 1
+           END) approved_count,
+       SUM(CASE
+               WHEN t.state = 'approved' THEN t.amount
+               ELSE 0
+           END) approved_total_amount
+FROM transactions t
+GROUP BY t.country, to_char(t.trans_date, 'YYYY-MM')
