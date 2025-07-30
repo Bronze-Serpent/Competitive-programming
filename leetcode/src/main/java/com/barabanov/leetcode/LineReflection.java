@@ -39,6 +39,9 @@ public class LineReflection {
 
 
     private static boolean isSymmetric(int[][] points) {
+        if (points.length != points[0].length)
+            return true;
+
         Map<Integer, Set<Integer>> yToAllX = new HashMap<>();
         int minX = points[0][0];
         int maxX = points[0][0];
