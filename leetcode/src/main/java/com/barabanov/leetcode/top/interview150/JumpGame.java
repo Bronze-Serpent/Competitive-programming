@@ -1,5 +1,7 @@
 package com.barabanov.leetcode.top.interview150;
 
+import java.util.Arrays;
+
 /**
  * 55
  */
@@ -7,11 +9,11 @@ public class JumpGame
 {
     public static void main(String[] args)
     {
-        int[] arr = {2,3,1,1,4};
-        System.out.println(canJump(arr));
+        System.out.println(mySecondTryCanJump(new int[]{1, 1, 0, 1, 1}));
     }
 
-    // leftMostGood - элемент с которого я могу дотянуться до правого конца.
+
+    // leftMostGood - СЌР»РµРјРµРЅС‚ СЃ РєРѕС‚РѕСЂРѕРіРѕ СЏ РјРѕРіСѓ РґРѕС‚СЏРЅСѓС‚СЊСЃСЏ РґРѕ РїСЂР°РІРѕРіРѕ РєРѕРЅС†Р°.
     public static boolean canJump(int[] nums)
     {
         int numsLength = nums.length;
@@ -25,14 +27,13 @@ public class JumpGame
     }
 
 
-    // помечаем 0 пути, с которых мы не можем дойти до конца.
+    // РїРѕРјРµС‡Р°РµРј 0 РїСѓС‚Рё, СЃ РєРѕС‚РѕСЂС‹С… РјС‹ РЅРµ РјРѕР¶РµРј РґРѕР№С‚Рё РґРѕ РєРѕРЅС†Р°.
     public static boolean canJump0(int[] nums)
     {
         if (nums.length == 1)
             return true;
 
-        for (int idx = nums.length - 2; idx > -1; idx--)
-        {
+        for (int idx = nums.length - 2; idx > -1; idx--) {
             int canAchieve = 0;
 
             int maxJumpDist = idx + nums[idx];
@@ -53,6 +54,41 @@ public class JumpGame
         }
 
         return nums[0] == 1;
+    }
+
+
+
+    public static boolean mySecondTryCanJump(int[] nums) {
+        if (nums == null || nums.length == 0)
+            return false;
+        if (nums.length == 1)
+            return true;
+
+        int currIdx = 0;
+
+        while(true) {
+            int bestPlace = 0;
+            int nextIdx = -1;
+            int jumpRange = 1;
+
+            if (nums[currIdx] == 0)
+                return false;
+
+            for (int idx = currIdx + 1; idx <= currIdx + nums[currIdx]; idx++) {
+                if (idx == nums.length - 1)
+                    return true;
+                if (jumpRange + nums[idx] > bestPlace) {
+                    nextIdx = idx;
+                    bestPlace = jumpRange + nums[idx];
+                }
+
+                jumpRange++;
+            }
+            if (nextIdx == -1)
+                return false;
+
+            currIdx = nextIdx;
+        }
     }
 
 }
